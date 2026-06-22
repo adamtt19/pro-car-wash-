@@ -1,0 +1,1954 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Car Wash - Lavage Auto Professionnel à Rabat</title>
+    <meta name="description" content="Lavage Nahda (Ste Procarwash) - Centre de lavage automobile professionnel à 312 Hay Nahda, Rabat. Plus de 20 ans d'expérience. Note 4.6/5. Ouvert 7j/7 de 09h00 à 19h30.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --blue: #0ea5e9;
+            --dark-blue: #0369a1;
+            --navy: #1e3a8a;
+            --yellow: #facc15;
+            --light-yellow: #fef08a;
+            --white: #ffffff;
+            --gray: #f3f4f6;
+            --dark-gray: #374151;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            overflow-x: hidden;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            padding: 10px 0;
+        }
+
+        .navbar.scrolled .nav-logo-text {
+            color: var(--navy);
+        }
+
+        .navbar.scrolled .nav-link {
+            color: #374151;
+        }
+
+        .navbar.scrolled .nav-link:hover {
+            color: var(--blue);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .nav-logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            object-fit: contain;
+            background: white;
+            padding: 2px;
+            border: 2px solid var(--yellow);
+        }
+
+        .nav-logo-text {
+            color: white;
+            font-size: 1.4rem;
+            font-weight: 800;
+            transition: color 0.3s;
+        }
+
+        .nav-logo-sub {
+            color: var(--yellow);
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--yellow);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-btn {
+            background: var(--yellow);
+            color: var(--navy);
+            padding: 10px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(250, 204, 21, 0.3);
+        }
+
+        .nav-btn:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(250, 204, 21, 0.4);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .navbar.scrolled .mobile-toggle {
+            color: var(--navy);
+        }
+
+        /* ===== MOBILE MENU ===== */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 350px;
+            height: 100vh;
+            background: var(--navy);
+            z-index: 1001;
+            padding: 80px 40px;
+            transition: right 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .mobile-menu a:hover {
+            color: var(--yellow);
+        }
+
+        .mobile-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.92), rgba(30, 58, 138, 0.95)),
+                        url('https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1920') center/cover;
+            display: flex;
+            align-items: center;
+            padding: 120px 20px 80px;
+            position: relative;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 25px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--yellow);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero h1 {
+            color: white;
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: var(--yellow);
+        }
+
+        .hero p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.1rem;
+            margin-bottom: 35px;
+            max-width: 500px;
+            line-height: 1.7;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--yellow);
+            color: var(--navy);
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(250, 204, 21, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(250, 204, 21, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 2px solid white;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--navy);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .stat-box {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 20px 25px;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .stat-box .num {
+            color: var(--yellow);
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+
+        .stat-box .label {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.85rem;
+        }
+
+        .hero-img {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-img img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 20px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+        }
+
+        .hero-img::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            width: 100%;
+            height: 100%;
+            border: 3px solid var(--yellow);
+            border-radius: 20px;
+            z-index: -1;
+        }
+
+        /* ===== SECTIONS COMMON ===== */
+        section {
+            padding: 100px 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 60px;
+        }
+
+        .section-tag {
+            color: var(--blue);
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--navy);
+            margin-bottom: 15px;
+        }
+
+        .section-line {
+            width: 60px;
+            height: 4px;
+            background: var(--yellow);
+            margin: 0 auto 20px;
+            border-radius: 2px;
+        }
+
+        .section-desc {
+            color: #6b7280;
+            font-size: 1.05rem;
+        }
+
+        /* ===== ABOUT ===== */
+        .about {
+            background: white;
+        }
+
+        .about-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-img {
+            position: relative;
+        }
+
+        .about-img img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+
+        .about-badge {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            background: var(--yellow);
+            color: var(--navy);
+            padding: 20px 30px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(250, 204, 21, 0.3);
+        }
+
+        .about-badge .num {
+            font-size: 2rem;
+            font-weight: 800;
+        }
+
+        .about-badge .txt {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .about-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--navy);
+            margin-bottom: 10px;
+        }
+
+        .about-content h2 span {
+            color: var(--blue);
+        }
+
+        .about-content p {
+            color: #6b7280;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .about-feature .icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .about-feature .icon.blue {
+            background: #e0f2fe;
+            color: var(--blue);
+        }
+
+        .about-feature .icon.yellow {
+            background: var(--light-yellow);
+            color: #ca8a04;
+        }
+
+        .about-feature h4 {
+            font-weight: 700;
+            color: var(--navy);
+            font-size: 0.95rem;
+        }
+
+        .about-feature p {
+            font-size: 0.85rem;
+            color: #9ca3af;
+            margin: 0;
+        }
+
+        /* ===== SERVICES ===== */
+        .services {
+            background: #f0f9ff;
+        }
+
+        .services-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 35px 30px;
+            border-radius: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            border-color: var(--blue);
+        }
+
+        .service-icon {
+            width: 65px;
+            height: 65px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            transition: all 0.3s;
+        }
+
+        .service-card:hover .service-icon.blue {
+            background: var(--blue) !important;
+            color: white !important;
+        }
+
+        .service-card:hover .service-icon.yellow {
+            background: var(--yellow) !important;
+            color: var(--navy) !important;
+        }
+
+        .service-icon.blue {
+            background: #e0f2fe;
+            color: var(--blue);
+        }
+
+        .service-icon.yellow {
+            background: var(--light-yellow);
+            color: #ca8a04;
+        }
+
+        .service-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            color: #6b7280;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .service-list {
+            list-style: none;
+        }
+
+        .service-list li {
+            font-size: 0.85rem;
+            color: #6b7280;
+            padding: 5px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .service-list li::before {
+            content: '✓';
+            color: #22c55e;
+            font-weight: 700;
+        }
+
+        /* Extra services bar */
+        .extra-services {
+            max-width: 1200px;
+            margin: 50px auto 0;
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .extra-services h3 {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 30px;
+        }
+
+        .extra-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .extra-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            border-radius: 16px;
+            transition: all 0.3s;
+        }
+
+        .extra-item:hover {
+            background: #f9fafb;
+        }
+
+        .extra-item .icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
+        .extra-item:nth-child(1) .icon { background: #e0f2fe; color: var(--blue); }
+        .extra-item:nth-child(2) .icon { background: var(--light-yellow); color: #ca8a04; }
+        .extra-item:nth-child(3) .icon { background: #e0f2fe; color: var(--blue); }
+
+        .extra-item h4 {
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .extra-item p {
+            font-size: 0.85rem;
+            color: #9ca3af;
+        }
+
+        /* ===== PRICING TABLE ===== */
+        .pricing {
+            background: white;
+        }
+
+        .pricing-table-container {
+            max-width: 900px;
+            margin: 0 auto;
+            overflow-x: auto;
+        }
+
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .pricing-table thead {
+            background: var(--navy);
+            color: white;
+        }
+
+        .pricing-table th {
+            padding: 20px 15px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .pricing-table th:first-child {
+            text-align: left;
+            padding-left: 25px;
+        }
+
+        .pricing-table td {
+            padding: 18px 15px;
+            text-align: center;
+            border-bottom: 1px solid #f3f4f6;
+            font-size: 0.95rem;
+        }
+
+        .pricing-table td:first-child {
+            text-align: left;
+            padding-left: 25px;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .pricing-table tr:hover {
+            background: #f8fafc;
+        }
+
+        .pricing-table .price {
+            font-weight: 700;
+            color: var(--blue);
+            font-size: 1.1rem;
+        }
+
+        .pricing-table .highlight {
+            background: var(--light-yellow);
+        }
+
+        .pricing-table .highlight td {
+            border-bottom: 1px solid #fde047;
+        }
+
+        .pricing-others {
+            max-width: 900px;
+            margin: 40px auto 0;
+            background: var(--light-yellow);
+            border-radius: 20px;
+            padding: 30px;
+            border: 2px solid var(--yellow);
+        }
+
+        .pricing-others h3 {
+            text-align: center;
+            color: var(--navy);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .pricing-others-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .pricing-other-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+            background: white;
+            border-radius: 12px;
+            font-size: 0.95rem;
+        }
+
+        .pricing-other-item span:first-child {
+            color: #374151;
+        }
+
+        .pricing-other-item span:last-child {
+            color: var(--blue);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        /* ===== GALLERY ===== */
+        .gallery {
+            background: #f0f9ff;
+        }
+
+        .gallery-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .gallery-item {
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            aspect-ratio: 4/3;
+            background: #e5e7eb;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+            display: block;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(30, 58, 138, 0.8), transparent);
+            display: flex;
+            align-items: flex-end;
+            padding: 25px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay h4 {
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .gallery-overlay p {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.85rem;
+        }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonials {
+            background: white;
+        }
+
+        .testimonials-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: #f0f9ff;
+            padding: 40px 30px;
+            border-radius: 24px;
+            position: relative;
+        }
+
+        .testimonial-stars {
+            color: var(--yellow);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-text {
+            color: #4b5563;
+            font-style: italic;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .testimonial-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-avatar.blue { background: var(--blue); }
+        .testimonial-avatar.yellow { background: var(--yellow); color: var(--navy); }
+        .testimonial-avatar.green { background: #22c55e; }
+
+        .testimonial-name {
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .testimonial-role {
+            font-size: 0.8rem;
+            color: #9ca3af;
+        }
+
+        .testimonials-cta {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .testimonials-cta a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--blue);
+            font-weight: 700;
+            text-decoration: none;
+            border: 2px solid var(--blue);
+            padding: 12px 30px;
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+
+        .testimonials-cta a:hover {
+            background: var(--blue);
+            color: white;
+        }
+
+        /* ===== CONTACT ===== */
+        .contact {
+            background: var(--navy);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: var(--blue);
+            border-radius: 50%;
+            opacity: 0.1;
+            filter: blur(60px);
+        }
+
+        .contact::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 400px;
+            height: 400px;
+            background: var(--yellow);
+            border-radius: 50%;
+            opacity: 0.05;
+            filter: blur(60px);
+        }
+
+        .contact-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-info h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .contact-info > p {
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateX(5px);
+        }
+
+        .contact-icon {
+            width: 55px;
+            height: 55px;
+            background: var(--yellow);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--navy);
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .contact-item h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .contact-item p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95rem;
+        }
+
+        .contact-item .sub {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+
+        .contact-social {
+            margin-top: 35px;
+        }
+
+        .contact-social h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .social-links a:hover {
+            background: var(--yellow);
+            color: var(--navy);
+            transform: translateY(-3px);
+        }
+
+        .contact-map {
+            background: white;
+            border-radius: 24px;
+            padding: 8px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            height: 100%;
+            min-height: 450px;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            background: #f3f4f6;
+            border-radius: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .map-placeholder .map-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .map-placeholder h3 {
+            color: var(--navy);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .map-placeholder p {
+            color: #6b7280;
+            margin-bottom: 25px;
+        }
+
+        .map-btns {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .map-btn {
+            padding: 12px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .map-btn.primary {
+            background: var(--blue);
+            color: white;
+        }
+
+        .map-btn.primary:hover {
+            background: var(--dark-blue);
+        }
+
+        .map-btn.secondary {
+            background: #f3f4f6;
+            color: #374151;
+        }
+
+        .map-btn.secondary:hover {
+            background: #e5e7eb;
+        }
+
+        .map-info {
+            margin-top: 25px;
+            padding: 15px 20px;
+            background: var(--light-yellow);
+            border-radius: 12px;
+            border: 1px solid #fde047;
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .map-info p {
+            color: #854d0e;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #111827;
+            color: #9ca3af;
+            padding: 60px 20px 30px;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .footer-brand img {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            object-fit: contain;
+            background: white;
+            padding: 2px;
+        }
+
+        .footer-brand span {
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .footer-about p {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            max-width: 300px;
+        }
+
+        .footer-links h4 {
+            color: white;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #9ca3af;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--yellow);
+        }
+
+        .footer-contact p {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-contact i {
+            color: var(--yellow);
+            width: 20px;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 30px;
+            border-top: 1px solid #374151;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .footer-bottom p {
+            font-size: 0.85rem;
+        }
+
+        /* ===== BACK TO TOP ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--yellow);
+            color: var(--navy);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(250, 204, 21, 0.3);
+            z-index: 999;
+            border: none;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            background: white;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .hero h1 { font-size: 2.8rem; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .testimonials-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .pricing-others-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-toggle { display: block; }
+            
+            .hero-container { grid-template-columns: 1fr; text-align: center; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { margin: 0 auto 30px; }
+            .hero-btns { justify-content: center; }
+            .hero-stats { justify-content: center; }
+            .hero-img { display: none; }
+            
+            .about-grid { grid-template-columns: 1fr; }
+            .about-badge { right: 10px; }
+            
+            .services-grid { grid-template-columns: 1fr; }
+            .extra-grid { grid-template-columns: 1fr; }
+            
+            .contact-grid { grid-template-columns: 1fr; }
+            .contact-map { min-height: 350px; }
+            
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { text-align: center; justify-content: center; }
+            
+            section { padding: 60px 20px; }
+            .section-title { font-size: 2rem; }
+
+            .pricing-table { font-size: 0.85rem; }
+            .pricing-table th, .pricing-table td { padding: 12px 8px; }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.8rem; }
+            .hero-stats { flex-direction: column; gap: 15px; }
+            .stat-box { width: 100%; }
+            .about-features { grid-template-columns: 1fr; }
+            .btn-primary, .btn-outline { width: 100%; justify-content: center; }
+            .gallery-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Image debug styles */
+        .img-debug {
+            background: #f3f4f6;
+            border: 2px dashed #9ca3af;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <img src="logo.png" alt="Pro Car Wash Logo" class="nav-logo-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2250%22 height=%2250%22%3E%3Crect width=%2250%22 height=%2250%22 fill=%22%23facc15%22/%3E%3Ctext x=%2225%22 y=%2232%22 font-size=%2220%22 text-anchor=%22middle%22 fill=%22%231e3a8a%22%3E🚗%3C/text%3E%3C/svg%3E'">
+                <div>
+                    <div class="nav-logo-text">Pro Car Wash</div>
+                    <div class="nav-logo-sub">SARL - Lavage Auto</div>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link">Accueil</a></li>
+                <li><a href="#about" class="nav-link">À Propos</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#pricing" class="nav-link">Tarifs</a></li>
+                <li><a href="#gallery" class="nav-link">Galerie</a></li>
+                <li><a href="#contact" class="nav-btn">06 78 50 56 70</a></li>
+            </ul>
+            <button class="mobile-toggle" id="mobileToggle">☰</button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="overlay" id="overlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-close" id="mobileClose">✕</button>
+        <a href="#home" class="mobile-link">Accueil</a>
+        <a href="#about" class="mobile-link">À Propos</a>
+        <a href="#services" class="mobile-link">Services</a>
+        <a href="#pricing" class="mobile-link">Tarifs</a>
+        <a href="#gallery" class="mobile-link">Galerie</a>
+        <a href="#contact" class="mobile-link">Contact</a>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div>
+                <div class="hero-badge">
+                    <span class="dot"></span>
+                    Ouvert tous les jours : 09h00 - 19h30
+                </div>
+                <h1>Votre Voiture <br><span>Mérite le Meilleur</span></h1>
+                <p>Centre de lavage automobile professionnel à Hay Nahda, Rabat. Plus de 20 ans d'expérience dans le nettoyage automobile. Nous utilisons un savon écologique doux pour la peinture de votre véhicule.</p>
+                <div class="hero-btns">
+                    <a href="#services" class="btn-primary">Découvrir nos Services →</a>
+                    <a href="tel:0678505670" class="btn-outline">📞 Appeler Maintenant</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-box">
+                        <div class="num">4.6/5</div>
+                        <div class="label">Note Google</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="num">+20</div>
+                        <div class="label">Ans d'Expérience</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="num">312</div>
+                        <div class="label">Hay Nahda</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-img">
+                <img src="logo.png" alt="Pro Car Wash Logo Illustration" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Crect width=%22400%22 height=%22400%22 fill=%22%23e0f2fe%22 rx=%2220%22/%3E%3Ctext x=%22200%22 y=%22180%22 font-size=%2280%22 text-anchor=%22middle%22%3E🚗%3C/text%3E%3Ctext x=%22200%22 y=%22250%22 font-size=%2224%22 text-anchor=%22middle%22 fill=%22%231e3a8a%22 font-weight=%22bold%22%3EPro Car Wash%3C/text%3E%3Ctext x=%22200%22 y=%22280%22 font-size=%2216%22 text-anchor=%22middle%22 fill=%22%230ea5e9%22%3ESARL - Lavage Auto%3C/text%3E%3C/svg%3E'">
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="about">
+        <div class="about-grid">
+            <div class="about-img fade-in">
+                <img src="interface.jpeg" alt="Enseigne Pro Car Wash" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22400%22%3E%3Crect width=%22600%22 height=%22400%22 fill=%22%23f3f4f6%22 rx=%2220%22/%3E%3Ctext x=%22300%22 y=%22180%22 font-size=%2260%22 text-anchor=%22middle%22%3E🏪%3C/text%3E%3Ctext x=%22300%22 y=%22250%22 font-size=%2220%22 text-anchor=%22middle%22 fill=%22%236b7280%22%3EPro Car Wash - Hay Nahda%3C/text%3E%3C/svg%3E'">
+                <div class="about-badge">
+                    <div class="num">+20</div>
+                    <div class="txt">Ans d'Expérience</div>
+                </div>
+            </div>
+            <div class="about-content fade-in">
+                <span class="section-tag">À Propos de Nous</span>
+                <h2>Lavage Nahda <br><span>Ste Procarwash</span></h2>
+                <p>Situé au cœur de Hay Nahda à Rabat, Pro Car Wash est votre centre de lavage automobile de confiance depuis plus de 20 ans. Nous sommes fiers d'offrir un service de nettoyage professionnel pour tous types de véhicules.</p>
+                <p>Notre engagement : utiliser des produits de qualité, respectueux de l'environnement et doux pour la peinture de votre voiture, tout en garantissant un résultat impeccable à chaque visite.</p>
+                <div class="about-features">
+                    <div class="about-feature">
+                        <div class="icon blue">🌿</div>
+                        <div>
+                            <h4>Écologique</h4>
+                            <p>Savon doux</p>
+                        </div>
+                    </div>
+                    <div class="about-feature">
+                        <div class="icon yellow">⚡</div>
+                        <div>
+                            <h4>Rapide</h4>
+                            <p>Service efficace</p>
+                        </div>
+                    </div>
+                    <div class="about-feature">
+                        <div class="icon blue">🏆</div>
+                        <div>
+                            <h4>Professionnel</h4>
+                            <p>Équipe qualifiée</p>
+                        </div>
+                    </div>
+                    <div class="about-feature">
+                        <div class="icon yellow">🛡️</div>
+                        <div>
+                            <h4>Sécurisé</h4>
+                            <p>Surveillance 24h/24</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services" id="services">
+        <div class="section-header fade-in">
+            <span class="section-tag">Nos Prestations</span>
+            <h2 class="section-title">Services de Lavage</h2>
+            <div class="section-line"></div>
+            <p class="section-desc">Des services adaptés à tous les besoins et tous types de véhicules. Du nettoyage rapide au soin complet.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card fade-in">
+                <div class="service-icon blue">🚗</div>
+                <h3>Lavage Extérieur</h3>
+                <p>Nettoyage haute pression, shampoing carrosserie, séchage microfibre et brillance des jantes.</p>
+                <ul class="service-list">
+                    <li>Haute pression</li>
+                    <li>Séchage microfibre</li>
+                    <li>Brillance jantes</li>
+                </ul>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon yellow">🛋️</div>
+                <h3>Lavage Intérieur</h3>
+                <p>Aspiration complète, nettoyage des plastiques, vitres intérieures et désodorisation.</p>
+                <ul class="service-list">
+                    <li>Aspiration complète</li>
+                    <li>Nettoyage vitres</li>
+                    <li>Désodorisation</li>
+                </ul>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon blue">✨</div>
+                <h3>Lavage Complet</h3>
+                <p>Le meilleur des deux mondes. Traitement intérieur et extérieur pour une voiture comme neuve.</p>
+                <ul class="service-list">
+                    <li>Intérieur + Extérieur</li>
+                    <li>Traitement complet</li>
+                    <li>Produits qualité</li>
+                </ul>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon yellow">💎</div>
+                <h3>Lavage Luxe</h3>
+                <p>Traitement cire, polish léger, nettoyage des moteurs et protection des surfaces.</p>
+                <ul class="service-list">
+                    <li>Cire & Polish</li>
+                    <li>Nettoyage moteur</li>
+                    <li>Protection longue durée</li>
+                </ul>
+            </div>
+        </div>
+        <div class="extra-services fade-in">
+            <h3>Services Spéciaux</h3>
+            <div class="extra-grid">
+                <div class="extra-item">
+                    <div class="icon">🧹</div>
+                    <div>
+                        <h4>Nettoyage Tapis</h4>
+                        <p>Tapis de sol et coffre</p>
+                    </div>
+                </div>
+                <div class="extra-item">
+                    <div class="icon">🪑</div>
+                    <div>
+                        <h4>Nettoyage Fauteuils</h4>
+                        <p>Sièges et intérieur cuir</p>
+                    </div>
+                </div>
+                <div class="extra-item">
+                    <div class="icon">📹</div>
+                    <div>
+                        <h4>Surveillance 24H/24</h4>
+                        <p>Établissement sécurisé</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+        <div class="section-header fade-in">
+            <span class="section-tag">Tarifs</span>
+            <h2 class="section-title">Nos Tarifs</h2>
+            <div class="section-line"></div>
+            <p class="section-desc">Prix compétitifs pour une qualité professionnelle. Tous les tarifs sont affichés sur place.</p>
+        </div>
+        <div class="pricing-table-container fade-in">
+            <table class="pricing-table">
+                <thead>
+                    <tr>
+                        <th>Type de Véhicule</th>
+                        <th>Lavage Normale<br><small>à partir de</small></th>
+                        <th>Lavage Luxe<br><small>à partir de</small></th>
+                        <th>Lavage Complet<br><small>à partir de</small></th>
+                        <th>Lavage Moteur<br><small>à partir de</small></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>🚗 Berline</td>
+                        <td class="price">35 DH</td>
+                        <td class="price">70 DH</td>
+                        <td class="price">400 DH</td>
+                        <td class="price">40 DH</td>
+                    </tr>
+                    <tr class="highlight">
+                        <td>🚙 Berline Familiale & Van</td>
+                        <td class="price">40 DH</td>
+                        <td class="price">80 DH</td>
+                        <td class="price">450 DH</td>
+                        <td class="price">40 DH</td>
+                    </tr>
+                    <tr>
+                        <td>🚐 Mini 4x4</td>
+                        <td class="price">45 DH</td>
+                        <td class="price">100 DH</td>
+                        <td class="price">450 DH</td>
+                        <td class="price">40 DH</td>
+                    </tr>
+                    <tr class="highlight">
+                        <td>🚙 4x4</td>
+                        <td class="price">55 DH</td>
+                        <td class="price">120 DH</td>
+                        <td class="price">550 DH</td>
+                        <td class="price">40 DH</td>
+                    </tr>
+                    <tr>
+                        <td>🚐 Mini Fourgonnette</td>
+                        <td class="price">70 DH</td>
+                        <td class="price">120 DH</td>
+                        <td class="price">600 DH</td>
+                        <td class="price">40 DH</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="pricing-others fade-in">
+            <h3>Les Autres Services de Nettoyage</h3>
+            <div class="pricing-others-grid">
+                <div class="pricing-other-item">
+                    <span>Lavage garniture <small>(à partir de)</small></span>
+                    <span>80 DH</span>
+                </div>
+                <div class="pricing-other-item">
+                    <span>Lavage plafond <small>(à partir de)</small></span>
+                    <span>70 DH</span>
+                </div>
+                <div class="pricing-other-item">
+                    <span>Lavage tapis <small>(à partir de)</small></span>
+                    <span>30 DH</span>
+                </div>
+                <div class="pricing-other-item">
+                    <span>Lavage moquette voiture <small>(à partir de)</small></span>
+                    <span>70 DH</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery" id="gallery">
+        <div class="section-header fade-in">
+            <span class="section-tag">Galerie</span>
+            <h2 class="section-title">Notre Centre en Action</h2>
+            <div class="section-line"></div>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item fade-in">
+                <img src="moteur.jpeg" alt="Nettoyage moteur" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;background:#e5e7eb;color:#6b7280;font-size:3rem;\'>🔧</div>'">
+                <div class="gallery-overlay">
+                    <div>
+                        <h4>Nettoyage Moteur</h4>
+                        <p>Professionnel et détaillé</p>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="interieur.jpeg" alt="Intérieur cuir" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;background:#e5e7eb;color:#6b7280;font-size:3rem;\'>🛋️</div>'">
+                <div class="gallery-overlay">
+                    <div>
+                        <h4>Intérieur Cuir</h4>
+                        <p>Nettoyage et protection</p>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="complet int.jpeg" alt="Nettoyage complet" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;background:#e5e7eb;color:#6b7280;font-size:3rem;\'>🧹</div>'">
+                <div class="gallery-overlay">
+                    <div>
+                        <h4>Nettoyage Complet</h4>
+                        <p>De fond en comble</p>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="moteur propre.jpeg" alt="Moteur propre" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;background:#e5e7eb;color:#6b7280;font-size:3rem;\'>⚙️</div>'">
+                <div class="gallery-overlay">
+                    <div>
+                        <h4>Moteur Propre</h4>
+                        <p>Comme neuf</p>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="WhatsApp Image 2026-06-22 at 01.34.15 (4).jpeg" alt="Lavage mousse" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;background:#e5e7eb;color:#6b7280;font-size:3rem;\'>🫧</div>'">
+                <div class="gallery-overlay">
+                    <div>
+                        <h4>Lavage Mousse</h4>
+                        <p>Savon écologique</p>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="matelat.jpeg" alt="Nettoyage matelas" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;background:#e5e7eb;color:#6b7280;font-size:3rem;\'>🛏️</div>'">
+                <div class="gallery-overlay">
+                    <div>
+                        <h4>Nettoyage Matelas</h4>
+                        <p>Service à domicile</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="section-header fade-in">
+            <span class="section-tag">Témoignages</span>
+            <h2 class="section-title">Ce que disent nos clients</h2>
+            <div class="section-line"></div>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card fade-in">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"Service impeccable ! Ma voiture est comme neuve. Le personnel est très professionnel et rapide. Je recommande vivement ce centre à Hay Nahda."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar blue">A</div>
+                    <div>
+                        <div class="testimonial-name">Ahmed B.</div>
+                        <div class="testimonial-role">Client régulier</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card fade-in">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"J'adore le lavage intérieur. Ils nettoient vraiment dans les moindres recoins. Le prix est très raisonnable pour la qualité offerte."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar yellow">F</div>
+                    <div>
+                        <div class="testimonial-name">Fatima Z.</div>
+                        <div class="testimonial-role">Cliente satisfaite</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card fade-in">
+                <div class="testimonial-stars">★★★★☆</div>
+                <p class="testimonial-text">"Très bon rapport qualité/prix. Le centre est bien situé à Hay Nahda et l'accès est facile. Je reviendrai !"</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar green">Y</div>
+                    <div>
+                        <div class="testimonial-name">Youssef K.</div>
+                        <div class="testimonial-role">Nouveau client</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="testimonials-cta fade-in">
+            <a href="https://www.google.com/search?q=Lavage+Nahda+(Ste+Procarwash)+Avis" target="_blank">
+                🌐 Voir tous les avis sur Google
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <div class="contact-grid">
+            <div class="contact-info fade-in">
+                <span class="section-tag" style="color: var(--yellow);">Contact</span>
+                <h2>Venez Nous Rendre Visite</h2>
+                <p>Prêt à redonner de l'éclat à votre voiture ? Notre équipe vous attend au 312 Hay Nahda. Appelez-nous avant de venir pour vérifier la disponibilité !</p>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div>
+                        <h4>Adresse</h4>
+                        <p>312 Hay Nahda, Rabat, Maroc</p>
+                        <p class="sub">🏫 Accoté de l'école 6 novembre</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <div>
+                        <h4>Téléphone</h4>
+                        <p style="font-size: 1.2rem; font-weight: 700;">06 78 50 56 70</p>
+                        <p class="sub">Disponible pendant les heures d'ouverture</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">🕐</div>
+                    <div>
+                        <h4>Horaires d'ouverture</h4>
+                        <p>Tous les jours : 09h00 - 19h30</p>
+                        <p class="sub">📅 Ouvert 7j/7 - 24H/24H Surveillance</p>
+                    </div>
+                </div>
+
+                <div class="contact-social">
+                    <h4>Suivez-nous</h4>
+                    <div class="social-links">
+                        <a href="#">📘</a>
+                        <a href="#">📷</a>
+                        <a href="https://wa.me/212678505670">💬</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-map fade-in">
+                <div class="map-placeholder">
+                    <div class="map-icon">🗺️</div>
+                    <h3>Localisation</h3>
+                    <p>312 Hay Nahda, Rabat</p>
+                    <div class="map-btns">
+                        <a href="https://www.google.com/maps/place/Lavage+Nahda+(Ste+Procarwash)/@33.9807078,-6.814668,17z" target="_blank" class="map-btn primary">
+                            📍 Voir sur Maps
+                        </a>
+                        <a href="https://www.google.com/search?q=Lavage+Nahda+(Ste+Procarwash)+Avis" target="_blank" class="map-btn secondary">
+                            ⭐ 4.6/5 Avis Google
+                        </a>
+                    </div>
+                    <div class="map-info">
+                        <p>🚗 12 min du centre-ville de Rabat</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-about">
+                <div class="footer-brand">
+                    <img src="logo.png" alt="Pro Car Wash Logo" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2240%22 height=%2240%22%3E%3Crect width=%2240%22 height=%2240%22 fill=%22%23facc15%22 rx=%2210%22/%3E%3Ctext x=%2220%22 y=%2228%22 font-size=%2220%22 text-anchor=%22middle%22 fill=%22%231e3a8a%22%3E🚗%3C/text%3E%3C/svg%3E'">
+                    <span>Pro Car Wash</span>
+                </div>
+                <p>Centre de lavage automobile professionnel à Hay Nahda, Rabat. Plus de 20 ans d'expérience. Qualité, écologie et satisfaction client sont nos priorités.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Liens Rapides</h4>
+                <ul>
+                    <li><a href="#home">Accueil</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#pricing">Tarifs</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links footer-contact">
+                <h4>Contact</h4>
+                <p>📞 06 78 50 56 70</p>
+                <p>📍 312 Hay Nahda, Rabat</p>
+                <p>🕐 09h00 - 19h30</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Pro Car Wash SARL. Tous droits réservés.</p>
+            <p>Lavage automobile professionnel à Rabat, Maroc.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop">↑</button>
+
+    <!-- JavaScript -->
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileClose = document.getElementById('mobileClose');
+        const overlay = document.getElementById('overlay');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function openMenu() {
+            mobileMenu.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            mobileMenu.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        mobileToggle.addEventListener('click', openMenu);
+        mobileClose.addEventListener('click', closeMenu);
+        overlay.addEventListener('click', closeMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+        // Fade in animation on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        fadeElements.forEach(el => fadeObserver.observe(el));
+
+        // Back to top
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
